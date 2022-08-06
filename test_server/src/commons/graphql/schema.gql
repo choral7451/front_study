@@ -1,0 +1,17 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Board {
+  _id: String!
+  number: Int!
+  message: String!
+}
+
+type Query {
+  fetchBoard: Boolean!
+}
+
+type Mutation {
+  createBoard(writer: String!, title: String!, contents: String!): Board!
+}
