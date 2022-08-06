@@ -9,7 +9,7 @@ type Board {
 }
 
 type Query {
-  fetchBoard: Boolean!
+  fetchBoard(number: Float!): Board!
 }
 
 type Mutation {

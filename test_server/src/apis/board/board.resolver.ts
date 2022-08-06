@@ -3,9 +3,17 @@ import { Board } from './entities/board.entity';
 
 @Resolver()
 export class BoardResolver {
-  @Query(() => Boolean)
-  fetchBoard() {
-    return true;
+  @Query(() => Board)
+  fetchBoard(
+    @Args('number') number: number, //
+  ) {
+    const data = {
+      _id: number,
+      number: number,
+      message: `${number}번 내용입니다.`,
+    };
+
+    return data;
   }
 
   @Mutation(() => Board)

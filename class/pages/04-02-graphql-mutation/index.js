@@ -17,7 +17,6 @@ export default function GraphqlMutationPage() {
 
   async function onClickGraphqlApi() {
     const result = await callGraphql();
-    console.log(result);
     setData(result.data.createBoard.message);
   }
 

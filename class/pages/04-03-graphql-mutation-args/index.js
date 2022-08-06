@@ -23,7 +23,6 @@ export default function GraphqlMutationPage() {
         contents: "내용이에요"
       }
     );
-    console.log(result);
     setData(result.data.createBoard.message);
   }
 
