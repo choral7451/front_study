@@ -11,7 +11,7 @@ export class BoardResolver {
   async fetchBoard(
     @Args('number') number: number, //
   ) {
-    return await this.boardService.findOne({ _id: String(number) });
+    return await this.boardService.findOne({ number });
   }
 
   @Query(() => [Board])
@@ -32,5 +32,14 @@ export class BoardResolver {
     @Args('number') number: number, //
   ) {
     return this.boardService.delete({ number });
+  }
+
+  @Mutation(() => Board)
+  async updateBoard(
+    @Args('number') number: number, //
+    @Args('message') message: string,
+  ) {
+    console.log(number, message);
+    return this.boardService.update({ number, message });
   }
 }

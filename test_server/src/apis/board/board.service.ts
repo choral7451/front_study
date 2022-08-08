@@ -8,8 +8,8 @@ export class BoardService {
     private readonly boardRepository: Repository<Board>, //
   ) {}
 
-  async findOne({ _id }) {
-    return await this.boardRepository.findOne({ where: { _id } });
+  async findOne({ number }) {
+    return await this.boardRepository.findOne({ where: { number } });
   }
 
   async find() {
@@ -32,5 +32,15 @@ export class BoardService {
     } catch {
       return false;
     }
+  }
+
+  async update({ number, message }) {
+    const findBoard = await this.findOne({ number });
+
+    return await this.boardRepository.save({
+      ...findBoard,
+      number,
+      message,
+    });
   }
 }
