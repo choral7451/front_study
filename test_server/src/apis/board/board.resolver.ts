@@ -1,34 +1,36 @@
 import { Resolver, Args, Mutation, Query } from '@nestjs/graphql';
+import { BoardService } from './board.service';
 import { Board } from './entities/board.entity';
 
 @Resolver()
 export class BoardResolver {
+  constructor(
+    private readonly boardService: BoardService, //
+  ) {}
   @Query(() => Board)
-  fetchBoard(
+  async fetchBoard(
     @Args('number') number: number, //
   ) {
-    const data = {
-      _id: number,
-      number: number,
-      message: `${number}번 내용입니다.`,
-    };
+    return await this.boardService.findOne({ _id: String(number) });
+  }
 
-    return data;
+  @Query(() => [Board])
+  async fetchBoards() {
+    return await this.boardService.find();
   }
 
   @Mutation(() => Board)
-  createBoard(
-    @Args('writer') writer: string, //
-    @Args('title') title: string,
-    @Args('contents') contents: string,
+  async createBoard(
+    @Args('number') number: string,
+    @Args('message') message: string,
   ) {
-    console.log(writer, title, contents);
-    const data = {
-      _id: '1',
-      number: 1,
-      message: '내용',
-    };
+    return await this.boardService.create({ number, message });
+  }
 
-    return data;
+  @Mutation(() => Boolean)
+  deleteBoard(
+    @Args('number') number: number, //
+  ) {
+    return this.boardService.delete({ number });
   }
 }

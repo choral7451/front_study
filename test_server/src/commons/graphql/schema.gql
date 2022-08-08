@@ -10,8 +10,10 @@ type Board {
 
 type Query {
   fetchBoard(number: Float!): Board!
+  fetchBoards: [Board!]!
 }
 
 type Mutation {
-  createBoard(writer: String!, title: String!, contents: String!): Board!
+  createBoard(number: String!, message: String!): Board!
+  deleteBoard(number: Float!): Boolean!
 }
