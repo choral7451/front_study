@@ -16,5 +16,5 @@ type Query {
 type Mutation {
   createBoard(number: String!, message: String!): Board!
   deleteBoard(number: Float!): Boolean!
-  updateBoard(number: Float!, message: String!): Board!
+  updateBoard(number: Float, message: String): Board!
 }

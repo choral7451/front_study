@@ -39,8 +39,8 @@ export class BoardService {
 
     return await this.boardRepository.save({
       ...findBoard,
-      number,
-      message,
+      number: number ? number : findBoard.number,
+      message: message ? message : findBoard.message,
     });
   }
 }

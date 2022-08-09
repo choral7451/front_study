@@ -36,10 +36,10 @@ export class BoardResolver {
 
   @Mutation(() => Board)
   async updateBoard(
-    @Args('number') number: number, //
-    @Args('message') message: string,
+    @Args('number', { nullable: true }) number?: number, //
+    @Args('message', { nullable: true }) message?: string,
   ) {
-    console.log(number, message);
-    return this.boardService.update({ number, message });
+    const result = await this.boardService.update({ number, message });
+    return result;
   }
 }
