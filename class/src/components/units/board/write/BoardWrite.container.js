@@ -26,10 +26,6 @@ export default function BoardWrite() {
     setTitle(e.target.value);
   }
 
-  function onChangeContent(e) {
-    setContents(e.target.value);
-  }
-
   return (
     <BoardWriterUI
       onChangeWriter={onChangeWriter}
