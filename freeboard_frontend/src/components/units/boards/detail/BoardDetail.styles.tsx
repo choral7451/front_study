@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -88,4 +89,9 @@ export const ReviewListStar = styled.div`
 
 export const ReviewListDate = styled.div`
   width: 20%;
+`;
+
+export const Youtube = styled(ReactPlayer)`
+  margin: auto;
+  padding-top: 5%;
 `;

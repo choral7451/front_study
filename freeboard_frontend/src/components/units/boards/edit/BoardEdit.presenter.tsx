@@ -1,16 +1,19 @@
-import React from "react";
-import * as S from "./BoardNew.styles";
-import { IBoardNewUI } from "./BoardNew.types";
+import * as S from "../new/BoardNew.styles";
 
-export default function BoardNewUI(props: IBoardNewUI) {
+export default function BoardEditUI(props: any) {
   return (
     <S.Wrapper>
-      <S.Title>게시물 등록</S.Title>
+      <S.Title>게시물 수정</S.Title>
       <S.WriterAndPassword_Box>
         <S.Writer>
           <S.SubTitleText>작성자</S.SubTitleText>
-          <S.WriterInput type="text" onChange={props.onChangeWriter} />
-          <S.ErrorMessage>{props.writerError}</S.ErrorMessage>
+          <S.WriterInput
+            type="text"
+            defaultValue={props.data?.fetchBoard.writer}
+            onChange={props.onChangeWriter}
+            readOnly={true}
+          />
+          <S.ErrorMessage>{}</S.ErrorMessage>
         </S.Writer>
         <S.Password>
           <S.SubTitleText>비밀번호</S.SubTitleText>
@@ -19,13 +22,21 @@ export default function BoardNewUI(props: IBoardNewUI) {
       </S.WriterAndPassword_Box>
       <S.SubTitle>
         <S.SubTitleText>제목</S.SubTitleText>
-        <S.SubTitleInput type="text" onChange={props.onChangeTitle} />
-        <S.ErrorMessage>{props.titleError}</S.ErrorMessage>
+        <S.SubTitleInput
+          type="text"
+          defaultValue={props.data?.fetchBoard.title}
+          onChange={props.onChangeTitle}
+        />
+        <S.ErrorMessage>{}</S.ErrorMessage>
       </S.SubTitle>
       <S.Content>
         <S.SubTitleText>내용</S.SubTitleText>
-        <S.ContentInput type="text" onChange={props.onChangeContent} />
-        <S.ErrorMessage>{props.contentError}</S.ErrorMessage>
+        <S.ContentInput
+          type="text"
+          defaultValue={props.data?.fetchBoard.content}
+          onChange={props.onChangeContent}
+        />
+        <S.ErrorMessage></S.ErrorMessage>
       </S.Content>
       {/* <S.Address>
         <S.SubTitleText>주소</S.SubTitleText>
@@ -38,7 +49,11 @@ export default function BoardNewUI(props: IBoardNewUI) {
       </S.Address> */}
       <S.Youtube>
         <S.SubTitleText>유튜브</S.SubTitleText>
-        <S.YoutubeInput type="text" onChange={props.onChangeUrl} />
+        <S.YoutubeInput
+          type="text"
+          defaultValue={props.data?.fetchBoard.url}
+          onChange={props.onChangeUrl}
+        />
       </S.Youtube>
       {/* <S.Image>
         <S.SubTitleText>사진 첨부</S.SubTitleText>
@@ -67,8 +82,10 @@ export default function BoardNewUI(props: IBoardNewUI) {
         </S.Radio_Box>
       </S.MainSetting> */}
       <S.ButtonWrapper>
-        <S.CreateButton onClick={props.signup}>등록하기</S.CreateButton>
-        <S.CreateButton onClick={props.pushList}>취소하기</S.CreateButton>
+        <S.CreateButton onClick={props.onClickUpdateBoard}>
+          수정하기
+        </S.CreateButton>
+        <S.CreateButton onClick={props.pushDetail}>취소하기</S.CreateButton>
       </S.ButtonWrapper>
     </S.Wrapper>
   );

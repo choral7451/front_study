@@ -15,6 +15,7 @@ export interface IBoardDetailUI {
   setStarValue: any;
   starValue: number;
   onClickCreateReview: () => void;
+  onClickEditBoard: () => void;
   onChangeReviewWriter: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeReviewContent: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }

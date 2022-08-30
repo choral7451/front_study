@@ -30,7 +30,6 @@ export default function BoardDetail() {
     variables: { id: Number(router.query.number) },
   });
 
-  function getReview() {}
   async function onClickDeleteBoard() {
     await deleteBaord({
       variables: { id: Number(router.query.number) },
@@ -60,6 +59,10 @@ export default function BoardDetail() {
     });
   }
 
+  async function pushEdit() {
+    router.push(`/boards/${router.query.number}/edit`);
+  }
+
   function onChangeReviewWriter(e: ChangeEvent<HTMLInputElement>) {
     setReviewWriter(e.target.value);
   }
@@ -84,6 +87,7 @@ export default function BoardDetail() {
       reviewList={reviewList}
       pushList={pushList}
       onClickDeleteBoard={onClickDeleteBoard}
+      pushEdit={pushEdit}
       desc={desc}
       setStarValue={setStarValue}
       starValue={starValue}

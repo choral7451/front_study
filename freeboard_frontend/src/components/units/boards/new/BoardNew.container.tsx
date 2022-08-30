@@ -10,6 +10,7 @@ export default function BoardNew() {
   const [writer, setWriter] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [url, setUrl] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [titleError, setTitleError] = useState("");
@@ -29,9 +30,13 @@ export default function BoardNew() {
     setContent(e.target.value);
   }
 
+  function onChangeUrl(e: ChangeEvent<HTMLInputElement>) {
+    setUrl(e.target.value);
+  }
+
   async function onClickCreateBoard() {
     const result = await createBaord({
-      variables: { writer, title, content },
+      variables: { writer, title, content, url },
     });
     router.push(`/boards/${result.data.createBoard}`);
   }
@@ -72,6 +77,7 @@ export default function BoardNew() {
       onChangeContent={onChangeContent}
       onChangeWriter={onChangeWriter}
       onClickCreateBoard={onClickCreateBoard}
+      onChangeUrl={onChangeUrl}
       writerError={writerError}
       titleError={titleError}
       contentError={contentError}
