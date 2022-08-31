@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import ReactPlayer from "react-player";
+import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -71,27 +72,25 @@ export const ReviewListWrapper = styled.div`
   width: 50%;
 `;
 
-export const ReviewListId = styled.div`
-  width: 5%;
-`;
-
 export const ReviewListWriter = styled.div`
-  width: 20%;
+  width: 10%;
 `;
 
 export const ReviewListContent = styled.div`
-  width: 35%;
-`;
-
-export const ReviewListStar = styled.div`
-  width: 20%;
+  width: 40%;
 `;
 
 export const ReviewListDate = styled.div`
-  width: 20%;
+  width: 30%;
+  font-size: small;
 `;
 
 export const Youtube = styled(ReactPlayer)`
   margin: auto;
   padding-top: 5%;
+`;
+
+export const star = styled(Rate)`
+  width: 20%;
+  font-size: small;
 `;

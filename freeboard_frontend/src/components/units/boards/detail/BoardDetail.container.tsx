@@ -2,6 +2,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import BoardDetailUI from "./BoardDetail.presenter";
+import { Rate } from "antd";
+
 import {
   CREATE_REVIEW,
   DELETE_BOARD,
@@ -20,7 +22,6 @@ export default function BoardDetail() {
   const [reviewWriter, setReviewWriter] = useState("");
   const [reviewContent, setReviewContent] = useState("");
   const [starValue, setStarValue] = useState(3);
-  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
   const { data } = useQuery(FETCH_BOARD, {
     variables: { id: Number(router.query.number) },
@@ -73,11 +74,14 @@ export default function BoardDetail() {
 
   const reviewList = review.data?.fetchReviews.map((el: IReviewList) => (
     <S.ReviewListWrapper key={el.id}>
-      <S.ReviewListId>{el.id}</S.ReviewListId>
       <S.ReviewListWriter>{el.writer}</S.ReviewListWriter>
       <S.ReviewListContent>{el.content}</S.ReviewListContent>
-      <S.ReviewListStar>{el.star}</S.ReviewListStar>
-      <S.ReviewListDate>{el.updatedAt}</S.ReviewListDate>
+      <S.star value={el.star} disabled={true} />
+      <S.ReviewListDate>
+        {el.updatedAt.split("T")[0] +
+          " " +
+          el.updatedAt.split("T")[1].split(".")[0]}
+      </S.ReviewListDate>
     </S.ReviewListWrapper>
   ));
 
@@ -88,7 +92,6 @@ export default function BoardDetail() {
       pushList={pushList}
       onClickDeleteBoard={onClickDeleteBoard}
       pushEdit={pushEdit}
-      desc={desc}
       setStarValue={setStarValue}
       starValue={starValue}
       onClickCreateReview={onClickCreateReview}

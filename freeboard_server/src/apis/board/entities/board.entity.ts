@@ -25,6 +25,10 @@ export class Board {
   @Field(() => String)
   content: string;
 
+  @Column('text', { nullable: true })
+  @Field({ nullable: true })
+  url?: string;
+
   @UpdateDateColumn()
   @Field(() => Date)
   updatedAt: Date;

@@ -1,5 +1,4 @@
 import { InputType, OmitType } from '@nestjs/graphql';
-import { Board } from '../entities/board.entity';
 import { Review } from '../entities/review.entity';
 
 @InputType()

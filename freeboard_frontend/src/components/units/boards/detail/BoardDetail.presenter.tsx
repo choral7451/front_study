@@ -25,11 +25,7 @@ export default function BoardDetailUI(props: any) {
         <S.ReviewHeader>
           이름 : <S.ReviewWriter onChange={props.onChangeReviewWriter} />
           <span>
-            <Rate
-              tooltips={props.desc}
-              onChange={props.setStarValue}
-              value={props.starValue}
-            />
+            <Rate onChange={props.setStarValue} value={props.starValue} />
           </span>
           <S.ReviewButton onClick={props.onClickCreateReview}>
             등록

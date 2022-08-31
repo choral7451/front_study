@@ -7,6 +7,7 @@ type Board {
   writer: String!
   title: String!
   content: String!
+  url: String
   updatedAt: DateTime!
 }
 
@@ -26,13 +27,14 @@ type Review {
 
 type Query {
   fetchBoards: [Board!]!
-  fetchBoard(id: Float!): Board!
-  fetchReviews(id: Float!): [Review!]!
+  fetchBoard(id: Float): Board!
+  fetchReviews(id: Float): [Review!]!
 }
 
 type Mutation {
   createBoard(createBoardInput: CreateBoardInput!): String!
   deleteBoard(id: Float!): Boolean!
+  updateBoard(id: String, updateBoardInput: UpdateBoardInput!): String!
   createReview(createReviewInput: CreateReviewInput!): Int!
 }
 
@@ -40,6 +42,14 @@ input CreateBoardInput {
   writer: String!
   title: String!
   content: String!
+  url: String
+}
+
+input UpdateBoardInput {
+  writer: String
+  title: String
+  content: String
+  url: String
 }
 
 input CreateReviewInput {

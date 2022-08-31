@@ -43,6 +43,14 @@ export class BoardService {
     }
   }
 
+  async update({ id, updateBoardInput }) {
+    await this.boardRepository.update(id, {
+      ...updateBoardInput,
+    });
+
+    return true;
+  }
+
   async saveReview({ createReviewInput }) {
     const result = await this.reviewRepository.save({
       ...createReviewInput,
