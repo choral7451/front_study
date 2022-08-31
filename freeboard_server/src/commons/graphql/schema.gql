@@ -6,6 +6,9 @@ type Board {
   id: String!
   writer: String!
   title: String!
+  zipcode: String!
+  address: String!
+  addressDetail: String!
   content: String!
   url: String
   updatedAt: DateTime!
@@ -41,6 +44,9 @@ type Mutation {
 input CreateBoardInput {
   writer: String!
   title: String!
+  zipcode: String!
+  address: String!
+  addressDetail: String!
   content: String!
   url: String
 }

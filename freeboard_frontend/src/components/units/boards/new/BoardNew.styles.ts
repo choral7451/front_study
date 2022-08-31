@@ -81,6 +81,7 @@ export const ZipcodeSearch = styled.button`
   margin-left: 20px;
   width: 15%;
   height: 35px;
+  cursor: pointer;
 `;
 export const AddressInput = styled.input`
   height: 35px;

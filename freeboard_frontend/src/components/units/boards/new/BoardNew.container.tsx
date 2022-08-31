@@ -7,6 +7,8 @@ import { CREATE_BOARD } from "./BoardNew.queries";
 export default function BoardNew() {
   const router = useRouter();
 
+  const [isModalVisible, setIsModalvisible] = useState(false);
+
   const [writer, setWriter] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -15,6 +17,10 @@ export default function BoardNew() {
   const [writerError, setWriterError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentError, setContentError] = useState("");
+
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const [createBaord] = useMutation(CREATE_BOARD);
 
@@ -36,7 +42,15 @@ export default function BoardNew() {
 
   async function onClickCreateBoard() {
     const result = await createBaord({
-      variables: { writer, title, content, url },
+      variables: {
+        writer,
+        title,
+        content,
+        url,
+        zipcode,
+        address,
+        addressDetail,
+      },
     });
     router.push(`/boards/${result.data.createBoard}`);
   }
@@ -71,8 +85,36 @@ export default function BoardNew() {
     }
   }
 
+  function showModal() {
+    setIsModalvisible(true);
+  }
+
+  function handleOk() {
+    setIsModalvisible(false);
+  }
+
+  function handleCancel() {
+    setIsModalvisible(false);
+  }
+
+  function handleComplete(data: any) {
+    console.log(data);
+    setZipcode(data.zonecode);
+    setAddress(data.address);
+    setIsModalvisible(false);
+  }
+
+  function onChangeAddressDetail(e: ChangeEvent<HTMLInputElement>) {
+    setAddressDetail(e.target.value);
+  }
+
   return (
     <BoardNewUI
+      handleComplete={handleComplete}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      isModalVisible={isModalVisible}
+      showModal={showModal}
       onChangeTitle={onChangeTitle}
       onChangeContent={onChangeContent}
       onChangeWriter={onChangeWriter}
@@ -81,6 +123,9 @@ export default function BoardNew() {
       writerError={writerError}
       titleError={titleError}
       contentError={contentError}
+      zipcode={zipcode}
+      address={address}
+      onChangeAddressDetail={onChangeAddressDetail}
       signup={signup}
       pushList={pushList}
     />

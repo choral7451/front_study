@@ -1,6 +1,8 @@
 import React from "react";
 import * as S from "./BoardNew.styles";
 import { IBoardNewUI } from "./BoardNew.types";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 
 export default function BoardNewUI(props: IBoardNewUI) {
   return (
@@ -27,15 +29,30 @@ export default function BoardNewUI(props: IBoardNewUI) {
         <S.ContentInput type="text" onChange={props.onChangeContent} />
         <S.ErrorMessage>{props.contentError}</S.ErrorMessage>
       </S.Content>
-      {/* <S.Address>
+      <S.Address>
         <S.SubTitleText>주소</S.SubTitleText>
         <S.Zipcode_Box>
-          <S.ZipcodeInput type="text" />
-          <S.ZipcodeSearch>우편번호 검색</S.ZipcodeSearch>
+          <S.ZipcodeInput type="text" value={props.zipcode} readOnly={true} />
+          <S.ZipcodeSearch onClick={props.showModal}>
+            우편번호 검색
+          </S.ZipcodeSearch>
         </S.Zipcode_Box>
-        <S.AddressInput type="text" />
-        <S.DetailedAddressInput type="text" />
-      </S.Address> */}
+        <S.AddressInput type="text" value={props.address} readOnly={true} />
+        <S.DetailedAddressInput
+          type="text"
+          onChange={props.onChangeAddressDetail}
+        />
+      </S.Address>
+      {props.isModalVisible && (
+        <Modal
+          visible={true}
+          onOk={props.handleOk}
+          onCancel={props.handleCancel}
+        >
+          <DaumPostcode onComplete={props.handleComplete} />
+        </Modal>
+      )}
+
       <S.Youtube>
         <S.SubTitleText>유튜브</S.SubTitleText>
         <S.YoutubeInput type="text" onChange={props.onChangeUrl} />

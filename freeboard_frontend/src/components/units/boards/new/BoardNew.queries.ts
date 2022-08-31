@@ -5,6 +5,9 @@ export const CREATE_BOARD = gql`
     $writer: String!
     $title: String!
     $content: String!
+    $zipcode: String!
+    $address: String!
+    $addressDetail: String!
     $url: String
   ) {
     createBoard(
@@ -12,6 +15,9 @@ export const CREATE_BOARD = gql`
         writer: $writer
         title: $title
         content: $content
+        zipcode: $zipcode
+        address: $address
+        addressDetail: $addressDetail
         url: $url
       }
     )

@@ -21,6 +21,18 @@ export class Board {
   @Field(() => String)
   title: string;
 
+  @Column()
+  @Field(() => String)
+  zipcode: string;
+
+  @Column()
+  @Field(() => String)
+  address: string;
+
+  @Column()
+  @Field(() => String)
+  addressDetail: string;
+
   @Column('text')
   @Field(() => String)
   content: string;
