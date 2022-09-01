@@ -6,9 +6,7 @@ export interface IBoardNewUI {
   onChangeContent: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeUrl: (e: ChangeEvent<HTMLInputElement>) => void;
   onClickCreateBoard: () => void;
-  handleCancel: () => void;
-  handleOk: () => void;
-  showModal: () => void;
+  onToggleModal: () => void;
   handleComplete: (data: any) => void;
   onChangeAddressDetail: (e: ChangeEvent<HTMLInputElement>) => void;
   isModalVisible: boolean;

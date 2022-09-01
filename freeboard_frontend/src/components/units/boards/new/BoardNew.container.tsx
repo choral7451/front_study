@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import BoardNewUI from "./BoardNew.presenter";
@@ -52,6 +53,8 @@ export default function BoardNew() {
         addressDetail,
       },
     });
+
+    Modal.success({ content: "게시글이 등록되었습니다." });
     router.push(`/boards/${result.data.createBoard}`);
   }
 
@@ -85,23 +88,15 @@ export default function BoardNew() {
     }
   }
 
-  function showModal() {
-    setIsModalvisible(true);
-  }
-
-  function handleOk() {
-    setIsModalvisible(false);
-  }
-
-  function handleCancel() {
-    setIsModalvisible(false);
+  function onToggleModal() {
+    setIsModalvisible((prev) => !prev);
   }
 
   function handleComplete(data: any) {
     console.log(data);
     setZipcode(data.zonecode);
     setAddress(data.address);
-    setIsModalvisible(false);
+    onToggleModal();
   }
 
   function onChangeAddressDetail(e: ChangeEvent<HTMLInputElement>) {
@@ -111,10 +106,8 @@ export default function BoardNew() {
   return (
     <BoardNewUI
       handleComplete={handleComplete}
-      handleOk={handleOk}
-      handleCancel={handleCancel}
+      onToggleModal={onToggleModal}
       isModalVisible={isModalVisible}
-      showModal={showModal}
       onChangeTitle={onChangeTitle}
       onChangeContent={onChangeContent}
       onChangeWriter={onChangeWriter}

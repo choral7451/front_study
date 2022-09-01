@@ -33,7 +33,7 @@ export default function BoardNewUI(props: IBoardNewUI) {
         <S.SubTitleText>주소</S.SubTitleText>
         <S.Zipcode_Box>
           <S.ZipcodeInput type="text" value={props.zipcode} readOnly={true} />
-          <S.ZipcodeSearch onClick={props.showModal}>
+          <S.ZipcodeSearch onClick={props.onToggleModal}>
             우편번호 검색
           </S.ZipcodeSearch>
         </S.Zipcode_Box>
@@ -46,8 +46,8 @@ export default function BoardNewUI(props: IBoardNewUI) {
       {props.isModalVisible && (
         <Modal
           visible={true}
-          onOk={props.handleOk}
-          onCancel={props.handleCancel}
+          onOk={props.onToggleModal}
+          onCancel={props.onToggleModal}
         >
           <DaumPostcode onComplete={props.handleComplete} />
         </Modal>
