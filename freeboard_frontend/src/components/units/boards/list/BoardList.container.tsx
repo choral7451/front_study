@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { MouseEvent } from "react";
 import BoardListUI from "./BoardList.presenter";
 import { FETCH_BOARDS } from "./BoardList.queries";
 import * as S from "./BoardList.styles";
@@ -13,7 +13,7 @@ export default function BoardList() {
     router.push(`/boards/${e.target.parentNode.firstChild.innerText}`);
   };
 
-  const { data } = useQuery(FETCH_BOARDS);
+  const { data, refetch } = useQuery(FETCH_BOARDS);
   const list = data?.fetchBoards.map((el: IBoardList) => (
     <S.RowWrapper key={el.id}>
       <S.ColumnNumber>{el.id}</S.ColumnNumber>
@@ -27,5 +27,11 @@ export default function BoardList() {
     router.push("/boards/new");
   };
 
-  return <BoardListUI list={list} pushNew={pushNew} />;
+  const onClickPage = (e: MouseEvent<HTMLSpanElement>) => {
+    if (e.target instanceof Element) refetch({ page: Number(e.target.id) });
+  };
+
+  return (
+    <BoardListUI list={list} pushNew={pushNew} onClickPage={onClickPage} />
+  );
 }

@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
-import LayoutNavigation from "./navigation";
+import LayoutNavigation from "./navigation/Navigation.container";
 
 interface ILayoutProps {
   children: ReactNode;

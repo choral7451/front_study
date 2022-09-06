@@ -15,6 +15,35 @@ export default function BoardListUI(props: any) {
         <S.HederColumnDate>작성일</S.HederColumnDate>
       </S.RowWrapper>
       {props.list}
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
+        <span
+          id="1"
+          onClick={props.onClickPage}
+          style={{ margin: "0 20px", cursor: "pointer" }}
+        >
+          1
+        </span>
+        <span
+          id="2"
+          onClick={props.onClickPage}
+          style={{ margin: "0 20px", cursor: "pointer" }}
+        >
+          2
+        </span>
+        <span
+          id="3"
+          onClick={props.onClickPage}
+          style={{ margin: "0 20px", cursor: "pointer" }}
+        >
+          3
+        </span>
+      </div>
     </S.PageWrapper>
   );
 }

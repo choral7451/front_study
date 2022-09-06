@@ -29,7 +29,7 @@ type Review {
 }
 
 type Query {
-  fetchBoards: [Board!]!
+  fetchBoards(page: Float): [Board!]!
   fetchBoard(id: Float): Board!
   fetchReviews(id: Float): [Review!]!
 }

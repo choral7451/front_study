@@ -2,7 +2,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { Rate } from "antd";
 
 import {
   CREATE_REVIEW,

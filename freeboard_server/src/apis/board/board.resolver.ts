@@ -13,8 +13,8 @@ export class BoardResolver {
   ) {}
 
   @Query(() => [Board])
-  async fetchBoards() {
-    return await this.boardService.find();
+  async fetchBoards(@Args('page', { nullable: true }) page: number) {
+    return await this.boardService.find({ page });
   }
 
   @Query(() => Board)

@@ -12,8 +12,11 @@ export class BoardService {
     private readonly reviewRepository: Repository<Review>, //
   ) {}
 
-  async find() {
-    return await this.boardRepository.find();
+  async find({ page }) {
+    return await this.boardRepository.find({
+      order: { id: 'ASC' },
+      take: page,
+    });
   }
 
   async findReviews({ id }) {
